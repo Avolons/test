@@ -1,0 +1,220 @@
+@mixin center() {
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin pos_center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+@mixin horizontal-center {
+  margin: 0 auto;
+}
+
+@mixin inline-block($alignment: middle) {
+  display: inline-block;
+  @if $alignment and $alignment != none {
+    vertical-align: $alignment;
+  }
+  @if $legacy-support-for-ie {
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline;
+  }
+}
+
+@mixin float($side: left) {
+  float: unquote($side);
+  @if $legacy-support-for-ie {
+    _display: inline;
+  }
+}
+
+@mixin pull-left {
+  @include float(left);
+}
+
+@mixin pull-right {
+  @include float(right);
+}
+
+@mixin reset-float($display: block) {
+  float: none;
+  display: $display;
+}
+
+@mixin clearfix {
+  @if $legacy-support-for-ie {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+    overflow: hidden;
+  }
+}
+
+@mixin fullscreen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+@function is-direction($value) {
+  $is-keyword: index(
+    (
+      to top,
+      to top right,
+      to right top,
+      to right,
+      to bottom right,
+      to right bottom,
+      to bottom,
+      to bottom left,
+      to left bottom,
+      to left,
+      to left top,
+      to top left
+    ),
+    $value
+  );
+  $is-angle: type-of($value) == "number" and
+    index("deg" "grad" "turn" "rad", unit($value));
+
+  @return $is-keyword or $is-angle;
+}
+
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @error "Cannot convert '#{$value}' to legacy syntax because it doesn't seem to be a direction.";
+  }
+
+  $conversion-map: (
+    to top: bottom,
+    to top right: bottom left,
+    to right top: left bottom,
+    to right: left,
+    to bottom right: top left,
+    to right bottom: left top,
+    to bottom: top,
+    to bottom left: top right,
+    to left bottom: right top,
+    to left: right,
+    to left top: right bottom,
+    to top left: bottom right
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return 90deg - $value;
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(
+    legacy-direction($direction),
+    $color-stops
+  );
+  background: linear-gradient($direction, $color-stops);
+}
+
+@mixin border-bottom-1px($url) {
+  position: relative;
+  border: none;
+  &:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-bottom: 2px solid transparent;
+    border-image: url($url) 1 repeat;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+    bottom: 0;
+  }
+}
+
+@mixin border-top-1px($url) {
+  position: relative;
+  border: none;
+  &:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    border-top: 2px solid transparent;
+    border-image: url($url) 1 repeat;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+  }
+}
+
+@mixin border-right-1px($url, $selector) {
+  position: relative;
+  border: none;
+  #{$selector} {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    border-right: 2px solid transparent;
+    border-image: url($url) 1 repeat;
+    transform: scaleX(0.5);
+    transform-origin: 0 0;
+  }
+}
+
+@mixin common {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin text-overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin middle-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

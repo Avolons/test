@@ -1,0 +1,45 @@
+body.modal-open {
+  position: fixed;
+  width: 100%;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.center {
+  @include center;
+}
+.pos_center {
+  @include pos_center;
+  text-align: center;
+}
+.horizontal-center {
+  @include horizontal-center;
+}
+.inline-block {
+  @include inline-block();
+}
+.pull-left {
+  @include float(left);
+}
+.pull-right {
+  @include float(right);
+}
+.reset-float {
+  @include reset-float();
+}
+.clearfix {
+  @include clearfix;
+}
+.fullscreen {
+  @include fullscreen;
+}
