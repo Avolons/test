@@ -27,6 +27,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
+      _assets: resolve("front/assets"),
       _f: resolve("front"), //前台根目录
       _fc: resolve("front/components"), //前台根目录
       _b: resolve("back"), //后台根目录
