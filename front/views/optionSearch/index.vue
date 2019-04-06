@@ -1,5 +1,32 @@
 <style lang="scss">
+.search{
+	&_nav{
 
+	}
+	&_header{
+		padding: 40px 60px;
+		box-sizing: border-box;
+		&_list{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		&_single{
+			padding-right: 60px;
+			box-sizing: border-box;
+			width: 50%;
+			display: flex;
+			align-items: center;
+		}
+		&_title{
+			width: 110px;
+			text-align: right;
+			font-size: 14px;
+color: rgba(0,0,0,0.90);
+text-align: right;
+line-height: 22px;
+		}
+	}
+}
 </style>
 
 <template lang="pug">
