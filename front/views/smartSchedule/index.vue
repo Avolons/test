@@ -26,6 +26,9 @@
 			text-align:left;
 		}
 	}
+	&_table{
+		margin: 24px 0 32px;
+	}
 }
 </style>
 
@@ -76,8 +79,8 @@
 						Button.smart_schedule_manage 管理我的课表
 					Weektable
 			TabPane(label="收藏的学校", name="name3").infor_smart_tabPane
-				Table(border ,:columns="tableConfig", :data="schoolList")
-				Page.smart_tabs_page(:total="100",show-total)
+				Table(border ,:columns="tableConfig", :data="schoolList").infor_smart_table
+				Page.smart_tabs_page(:total="100",show-total).infor_smart_page
 
 </template>
 <script>

@@ -97,6 +97,11 @@ export default new Router({
           component: () => import("../views/smartSchedule/index.vue")
         },
         {
+          path: "manage",
+          name: "manage",
+          component: () => import("../views/smartSchedule/schoolManage.vue")
+        },
+        {
           path: "schoolDaySchedule",
           name: "smartSchoolDaySchedule",
           component: () =>

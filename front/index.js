@@ -7,7 +7,8 @@ import "babel-polyfill";
 import "normalize.css";
 import 'iview/dist/styles/iview.css';
 import './style/index.scss';
-
+import iviewArea from 'iview-area';
+Vue.use(iviewArea);
 // import '~iview/src/styles/index.less';
 
 Vue.use(iView);
