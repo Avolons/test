@@ -62,6 +62,11 @@
 			flex-grow: 1;
 			text-align:left;
 		}
+		&_select{
+			display: flex;
+			align-items: center;
+			justify-content: space-between
+		}
 	}
 }	
 </style>
@@ -71,8 +76,8 @@
 	nav.daySh_nav
 		Breadcrumb
 			BreadcrumbItem(to="/") 专栏首页
-			BreadcrumbItem(to="/components/breadcrumb") 智能课表
-			BreadcrumbItem 智能课表
+			BreadcrumbItem(to="/components/breadcrumb") 热点学校
+			BreadcrumbItem 杭州绿城育华中学
 	header.daySh_header
 		.daySh_header_content
 			h2.daySh_header_title 杭州绿城育华中学
@@ -82,11 +87,18 @@
 	content.daySh_content
 		.daySh_content_title
 			Button(type="default").daySh_content_titleBack 返回周课表
-			Button(type="primary")
-				Icon(type="ios-arrow-back")
-				| 本周课表
-				Icon(type="ios-arrow-forward")
+			.common_timeSelect
+				Icon(type="ios-arrow-back").common_timeSelect_icon
+				span.common_timeSelect_btn 本周课表
+				Icon(type="ios-arrow-forward").common_timeSelect_icon
 			h3.daySh_content_scheduleTitle  3月13日-19日课表
+			.daySh_content_select
+				Select(v-model="model1",placeholder="全部学段").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				Select(v-model="model1",placeholder="全部年级").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				Select(v-model="model1",placeholder="全部学科").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
 		Daytable.daySh_content_schedule(:isHome="false")
 </template>
 <script>

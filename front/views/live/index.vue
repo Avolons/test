@@ -35,10 +35,18 @@
     align-items: center;
   }
   &_chooseLeft {
-    flex-grow: 1;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	&_line{
+		width: 1px ;
+		height: 32px;
+		background: #e7e7e7;
+	}
   }
   &_chooseRight {
-    display: flex;
+	display: flex;
+	align-items: center;
   }
   &_page{
 	  margin-top: 40px;
@@ -109,32 +117,24 @@ font-weight: 700;
 			Input.live_header_search(search, enter-button="搜索", placeholder="输入学校/教师/课名搜索")
 		section.live_choose
 			.live_chooseLeft
-				Dropdown
-					Button() 学段
-						Icon(type="ios-arrow-down")
-					DropdownMenu(slot="list")
-						DropdownItem 驴打滚
-				Dropdown
-					Button() 年级
-						Icon(type="ios-arrow-down")
-					DropdownMenu(slot="list")
-						DropdownItem 驴打滚	
-				Dropdown
-					Button() 学科
-						Icon(type="ios-arrow-down")
-					DropdownMenu(slot="list")
-						DropdownItem 驴打滚
-				Dropdown
-					Button() 课程类型
-						Icon(type="ios-arrow-down")
-					DropdownMenu(slot="list")
-						DropdownItem 驴打滚	
+				Select(v-model="model1",placeholder="学段").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				span.live_chooseLeft_line
+				Select(v-model="model1",placeholder="年级").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				span.live_chooseLeft_line
+				Select(v-model="model1",placeholder="学科").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				span.live_chooseLeft_line
+				Select(v-model="model1",placeholder="课程类型").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
 			.live_chooseRight
 				.ivu-table-cell
 					span.ivu-table-cell-sort 时间排序
 						span.ivu-table-sort
 							i.ivu-icon.ivu-icon-md-arrow-dropup
 							i.ivu-icon.ivu-icon-md-arrow-dropdown
+				span.live_chooseLeft_line
 				.ivu-table-cell
 					span.ivu-table-cell-sort 关注度
 						span.ivu-table-sort

@@ -59,6 +59,11 @@
 			flex-grow: 1;
 			text-align:left;
 		}
+		&_select{
+			display: flex;
+			align-items: center;
+			justify-content: space-between
+		}
 	}
 }	
 </style>
@@ -83,6 +88,13 @@
 				| 本周课表
 				Icon(type="ios-arrow-forward")
 			h3.weekSh_content_scheduleTitle  3月13日-19日课表
+			.weekSh_content_select
+				Select(v-model="model1",placeholder="全部学段").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				Select(v-model="model1",placeholder="全部年级").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
+				Select(v-model="model1",placeholder="全部学科").common_dropdown.common_dropdown--noBorder
+					Option(v-for="item in cityList", :value="item.value", :key="item.value")
 		Daytable.weekSh_content_schedule(:isHome="false")
 </template>
 <script>

@@ -10,8 +10,8 @@ export default new Router({
       path: "/",
       name: "home",
       component: () => import("../views/home/index.vue")
-	},
-	// 条件搜索
+    },
+    // 条件搜索
     {
       path: "/optionSearch",
       name: "optionSearch",
@@ -23,19 +23,19 @@ export default new Router({
           component: () => import("../views/optionSearch/index.vue")
         }
       ]
-	},
-	{
-		path: "/information",
-		name: "information",
-		component: Layout,
-		children: [
-		  {
-			path: "",
-			name: "classInformation",
-			component: () => import("../views/information/index.vue")
-		  }
-		]
-	  },
+    },
+    {
+      path: "/information",
+      name: "information",
+      component: Layout,
+      children: [
+        {
+          path: "",
+          name: "classInformation",
+          component: () => import("../views/information/index.vue")
+        }
+      ]
+    },
     // 当日直播
     {
       path: "/live",
@@ -59,26 +59,14 @@ export default new Router({
           path: "",
           name: "hotClass",
           component: () => import("../views/hot/index.vue")
-		},
-		{
-			path: "hotSchool",
-			name: "hotSchool",
-			component: () => import("../views/hot/hotSchool.vue")
-		  }
+        },
+        {
+          path: "hotSchool",
+          name: "hotSchool",
+          component: () => import("../views/hot/hotSchool.vue")
+        }
       ]
-	},
-	{
-		path: "/hot",
-		name: "hot",
-		component: Layout,
-		children: [
-		  {
-			path: "",
-			name: "hotClass",
-			component: () => import("../views/hot/index.vue")
-		  }
-		]
-	  },
+    },
     // 课表
     {
       path: "/schedule",
@@ -96,8 +84,8 @@ export default new Router({
           component: () => import("../views/schedule/schoolWeekSchedule.vue")
         }
       ]
-	},
-	// 智能课表
+    },
+    // 智能课表
     {
       path: "/smartSchedule",
       name: "",

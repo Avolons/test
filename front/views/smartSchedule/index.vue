@@ -1,3 +1,34 @@
+<style lang="scss">
+.smart{
+	&_nav{
+		text-align: left;
+    height: 50px;
+    align-items: center;
+    display: flex;
+	}
+	&_tabs{
+		box-sizing: border-box;
+    padding: 30px;
+	background: #fff;
+	padding-top: 0;
+    display: block;
+	}
+	&_schedule{
+		&_title{
+			width: 100%;
+			height: 66px;;
+			display: flex;
+			align-items: center;
+		}
+		&_scheduleTitle{
+			text-indent: 16px;
+			flex-grow: 1;
+			text-align:left;
+		}
+	}
+}
+</style>
+
 <template lang="pug">
 .smart
 	.smart_nav
@@ -5,42 +36,44 @@
 			BreadcrumbItem(to="/") 专栏首页
 			BreadcrumbItem 智能课表
 	.smart_tabs
-		Tabs(value="name1")
+		Tabs(value="name1").common_tabs
 			TabPane(label="全省课表", name="name1").infor_smart_tabPane
-				.smart_schedule_day
+				.smart_schedule_day(v-if="provinceDayShow")
 					.smart_schedule_title
 						Button(type="default").smart_schedule_titleBack 返回周课表
-						Button(type="primary")
-							Icon(type="ios-arrow-back")
-							| 本周课表
-							Icon(type="ios-arrow-forward")
+						.common_timeSelect
+							Icon(type="ios-arrow-back").common_timeSelect_icon
+							span.common_timeSelect_btn 本周课表
+							Icon(type="ios-arrow-forward").common_timeSelect_icon
 						h3.smart_schedule_scheduleTitle  3月13日-19日课表
 					Daytable
-				.smart_schedule_week
+				.smart_schedule_week(v-else)
 					.smart_schedule_title
-						Button(type="primary")
-							Icon(type="ios-arrow-back")
-							| 本周课表
-							Icon(type="ios-arrow-forward")
+						.common_timeSelect
+							Icon(type="ios-arrow-back").common_timeSelect_icon
+							span.common_timeSelect_btn 本周课表
+							Icon(type="ios-arrow-forward").common_timeSelect_icon
 						h3.smart_schedule_scheduleTitle  3月13日-19日课表
 					Weektable
 			TabPane(label="我的定制课表", name="name2").infor_smart_tabPane
-				.smart_schedule_day
+				.smart_schedule_day(v-if="nineDayShow")
 					.smart_schedule_title
 						Button(type="default").smart_schedule_titleBack 返回周课表
-						Button(type="primary")
-							Icon(type="ios-arrow-back")
-							| 本周课表
-							Icon(type="ios-arrow-forward")
+						.common_timeSelect
+							Icon(type="ios-arrow-back").common_timeSelect_icon
+							span.common_timeSelect_btn 本周课表
+							Icon(type="ios-arrow-forward").common_timeSelect_icon
 						h3.smart_schedule_scheduleTitle  3月13日-19日课表
+						Button.smart_schedule_manage 管理我的课表
 					Daytable
-				.smart_schedule_week
+				.smart_schedule_week(v-else)
 					.smart_schedule_title
-						Button(type="primary")
-							Icon(type="ios-arrow-back")
-							| 本周课表
-							Icon(type="ios-arrow-forward")
+						.common_timeSelect
+							Icon(type="ios-arrow-back").common_timeSelect_icon
+							span.common_timeSelect_btn 本周课表
+							Icon(type="ios-arrow-forward").common_timeSelect_icon
 						h3.smart_schedule_scheduleTitle  3月13日-19日课表
+						Button.smart_schedule_manage 管理我的课表
 					Weektable
 			TabPane(label="收藏的学校", name="name3").infor_smart_tabPane
 				Table(border ,:columns="tableConfig", :data="schoolList")
@@ -53,6 +86,8 @@ import Weektable from "../../components/Weektable";
 export default {
   data() {
     return {
+		provinceDayShow:false,
+		nineDayShow:false,
       tableConfig: [
         {
           title: "学校",

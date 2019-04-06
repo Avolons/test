@@ -1,0 +1,63 @@
+$mainColor: #2274c3;
+.common {
+  &_dropdown {
+    margin-left: 14px;
+    width: 96px;
+    height: 36px;
+    &--noBorder {
+      border: none;
+      width: 100px;
+      margin: 0 20px;
+      height: 32px;
+      .ivu-select-selection {
+        border: none;
+        background: transparent;
+        > div {
+          display: flex;
+          justify-content: center;
+        }
+      }
+      .ivu-select-placeholder {
+        font-size: 14px !important;
+        color: rgba(0, 0, 0, 0.6) !important;
+        text-align: right;
+        box-shadow: none;
+      }
+    }
+  }
+  &_timeSelect {
+    width: 152px;
+    box-sizing: border-box;
+    border: 1px solid #e7e7e7;
+    height: 36px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    display: flex;
+    border-radius: 4px;
+    &_btn {
+      height: 100%;
+      width: 80px;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: 34px;
+      border-left: 1px solid #e7e7e7;
+      border-right: 1px solid #e7e7e7;
+      cursor: pointer;
+      &:active {
+        background: #e7e7e7;
+      }
+    }
+    &_icon {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+  &_tabs {
+    .ivu-tabs-nav-container {
+      line-height: 45px;
+    }
+  }
+}

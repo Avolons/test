@@ -37,8 +37,8 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-	  height: 19px;
-	  margin-bottom: 21px;
+      height: 19px;
+      margin-bottom: 21px;
     }
     &_msgImg {
       height: 16px;
@@ -78,20 +78,111 @@
         text-align: left;
         line-height: 19px;
       }
-	}
-	&_btnList{
-
-	}
-	&_comments{
-		margin-right: 26px;
-	}
+    }
+    &_btnList {
+    }
+    &_comments {
+      margin-right: 26px;
+    }
   }
-  &_content{
-	  background: #fff;
-	  &_tabPane{
-		  box-sizing: border-box;
-		  padding: 30px;
-	  }
+  &_content {
+    background: #fff;
+    &_tabPane {
+      box-sizing: border-box;
+      padding: 30px;
+    }
+    &_noData {
+    }
+    &_noDataImg {
+      margin: 100px auto 16px;
+      display: block;
+    }
+    &_noDataTexrt {
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    &_comments {
+      box-sizing: border-box;
+      padding: 30px;
+      &_single {
+        border-bottom: 1px solid #e7e7e7;
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      &_name {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.3);
+        letter-spacing: 0;
+        text-align: left;
+        line-height: 19px;
+        width: 100%;
+      }
+      &_text {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.9);
+        letter-spacing: 0;
+        text-align: left;
+        line-height: 30px;
+        width: 100%;
+      }
+      &_back {
+        background: #f8f8f8;
+        border-radius: 2px;
+        width: 1112px;
+        margin-left: 24px;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+    }
+    &_evaluate {
+      box-sizing: border-box;
+	  padding: 30px;
+	  &_single {
+      padding: 13px 0;
+      border-bottom: 1px solid #e7e7e7;
+    }
+      &_name {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.3);
+        letter-spacing: 0;
+        text-align: left;
+        line-height: 19px;
+      }
+      &_text {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.9);
+        letter-spacing: 0;
+        text-align: left;
+        line-height: 30px;
+      }
+    }
+    &_starList {
+      background: #f8f8f8;
+      border-radius: 2px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    &_starImg {
+      height: 20px;
+      width: 20px;
+      display: block;
+      margin-right: 7px;
+    }
+    &_starText {
+      font-size: 14px;
+      margin-right: 52px;
+      color: #666666;
+      letter-spacing: 0;
+      text-align: left;
+      line-height: 19px;
+    }
+    
   }
 }
 </style>
@@ -132,7 +223,7 @@
 					Button(type="primary").infor_header_comments 去留言
 					Button.infor_header_evaluate 去评价
 		.infor_content
-			Tabs(value="name1")
+			Tabs(value="name1").common_tabs
 				TabPane(label="课程信息", name="name1").infor_content_tabPane
 					.infor_header_description
 						.infor_header_name 课程名称：
@@ -164,5 +255,29 @@
 						.infor_header_name 简介：
 						.infor_header_text 希望课程观看愉快！
 				TabPane(label="留言（20条）", name="name2")
+					.infor_content_noData
+						img(src="../../assets/ic_empty.png").infor_content_noDataImg
+						h3.infor_content_noDataTexrt 暂无留言
+					ul.infor_content_comments
+						li.infor_content_comments_single
+							h4.infor_content_comments_name 周**  2019-3-13 12:34
+							p.infor_content_comments_text 个人很喜欢朱老师的讲课风格，支持支持。
+								.infor_content_comments_back 
+									h4.infor_content_comments_name 发布者回复 2019-3-13 12:34
+									p.infor_content_comments_text 《将进酒》是唐代诗人李贺创作的一首乐府诗。这首诗前四句写筵席之华贵丰盛；五、六句写动态的歌舞；七、八两句点明宴饮的时间；最后引用古人以反语结束。这首诗前面极写美酒佳肴欢歌妙舞，人生之享乐似乎莫过于此，结尾突然翻转，出人意料地推出死亡的意念和坟墓的枯寞冷落。在巨大的反差中，诗人强调的是生的快乐和死的悲哀。
 				TabPane(label="评价（53人）", name="name3")
+					.infor_content_noData
+						img(src="../../assets/ic_empty.png").infor_content_noDataImg
+						h3.infor_content_noDataTexrt 暂无评价
+					ul.infor_content_evaluate
+						.infor_content_starList
+							img(src="../../assets/ic_star_red.png").infor_content_starImg
+							span.infor_content_starText 优秀27人
+							img(src="../../assets/ic_star_orange.png").infor_content_starImg
+							span.infor_content_starText 良好2人
+							img(src="../../assets/ic_star_yellow.png").infor_content_starImg
+							span.infor_content_starText 一般1人
+						li.infor_content_evaluate_single
+							h4.infor_content_evaluates_name 周**  2019-3-13 12:34
+							p.infor_content_evaluate_text 个人很喜欢朱老师的讲课风格，支持支持。
 </template>
